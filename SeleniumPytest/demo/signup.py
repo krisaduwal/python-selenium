@@ -9,6 +9,11 @@ driver.get("http://127.0.0.1:5500/app/signup.html")
 
 # adding cookies
 driver.add_cookie({"name": "poo", "value": "oop"})
+driver.add_cookie({"name" : "kuku", "value" : "coco"})
+
+# delete cookies
+driver.delete_cookie("poo")
+# driver.delete_all_cookies()
 
 # find element by xpath and send keys
 nameElement = driver.find_element(By.XPATH, "//input[@name = 'username']")
@@ -31,9 +36,10 @@ cpwElement.send_keys('hello12345')
 
 signupElement = driver.find_element(By.XPATH, "//button[@id = 'button1']")
 
+# action perform
 action = ActionChains(driver)
 action.click(on_element= signupElement)
 action.perform()
 
-time.sleep(10)
+time.sleep(30)
 # print(element)
