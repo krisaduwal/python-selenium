@@ -8,6 +8,8 @@ from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 env_path = Path('.venv/.env')
 load_dotenv(dotenv_path=env_path)
@@ -34,13 +36,46 @@ time.sleep(30)
 
 driver.switch_to.window(driver.current_window_handle)
 print(driver.current_url)
+time.sleep(10)
 
 
-# driver.forward()
-# driver.get("https://web.khalti.com/#/")
-transferElement = driver.find_element(By.XPATH, "//*[@class='FundItem--1yG4v']")
-# transferElement = driver.find_element(By.LINK_TEXT, "Transfer")
+transferElement = driver.find_element(By.XPATH, "//div[@class='fundText--1pdtF' and text() = 'Transfer']")
 transferElement.click()
+
+driver.switch_to.window(driver.current_window_handle)
+print(driver.current_url)
+
+inputNum = driver.find_element(By.XPATH, "//input[@name='user']")
+inputNum.send_keys("9861550096")
+
+amountElement = driver.find_element(By.XPATH, "//input[@name = 'amount']")
+amountElement.send_keys("10")
+
+# purposeElement = driver.find_element(By.XPATH, "//div[@role = 'listbox']")
+# purposeElement.click()
+
+submitElement = driver.find_element(By.XPATH, "//button[@class = 'ui primary button']")
+submitElement.click()
+
+print(driver.current_url)
+
+driver.implicitly_wait(50)
+element = driver.find_element(By.XPATH, "//div[@class = 'ui primary button' and text() = 'Ok']")
+element.click()
+
+# try:
+#     element = WebDriverWait(driver, 10).until(
+#         EC.element_to_be_clickable((By.XPATH, "//div[@class = 'ui primary button' text() = 'Ok']"))
+#     )
+#     element.click()
+# finally:
+#     driver.quit()
+# for
+# driver.switch_to.window()
+# print(driver.current_url)
+
+# okElement = driver.find_element(By.XPATH, "//div[@class = 'ui primary button' and text() = 'Ok']")
+# okElement.click()
 # expectedURL = driver.current_url
 # actualURL = "https://web.khalti.com/#/"
 
