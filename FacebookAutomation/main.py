@@ -28,7 +28,7 @@ driver = webdriver.Chrome()
 
 # def createAccount(driver):
 driver.get("https://www.facebook.com/")
-time.sleep(5)
+time.sleep(3)
 # driver.implicitly_wait(10)
 
 createElement = driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/div[1]/div/div/div/div[2]/div/div[1]/form/div[5]/a")
@@ -73,9 +73,10 @@ time.sleep(2)
 
 signUp = driver.find_element(By.XPATH, "//button[@name = 'websubmit']").click()
 print("created successfully")
-time.sleep(5)
+time.sleep(2)
+
 driver.switch_to.window(driver.current_window_handle)
 
 
-time.sleep(10)
+time.sleep(200)
 
